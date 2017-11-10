@@ -1,0 +1,6 @@
+all:
+	gcc -o pmdump pmdump.c
+
+clean:
+	rm -rf *.o
+	rm pmdump
