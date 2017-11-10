@@ -102,19 +102,19 @@ The following example is to show how to install pmdump to Android device and dum
 adb root
 ```
 
-Copy pmdump to proper folder. /data folder is a good choice
+2. copy pmdump to proper folder. /data folder is a good choice
 
 ```bash
 adb push pmdump /data/pmdump
 ```
 
-Find the processid of the process that you want to dump using DDMS or ps command
+3. find the processid of the process that you want to dump using DDMS or ps command
 
 ```bash
 adb shell ps
 ```
 
-Dump memory and copy it to the host
+4. dump memory and copy it to the host
 
 ```bash
 adb shell
@@ -136,3 +136,13 @@ $ cd data
 $ ./pmdump +r +w -x +p <pid> 192.168.1.154 1212
 $ exit
 ```
+
+5. Play with the dump file
+
+pmdump_parser.py provides the function of parsing the dump to show information about the dump file
+
+```bash
+python pmdump_parser.py output_pmdump.bin
+```
+
+
