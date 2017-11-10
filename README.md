@@ -11,7 +11,7 @@ There are prebuilt pmdump binaries in /pmdump_prebuilt_bin folder.
 They can be used to dump a process memory.
 To build, please refer to below the build isntruction.
 
-pmdump_parser.py is useful script that parses the memory dump file.
+pmdump_parser.py is also provided, which is useful script that parses the memory dump file.
 
 ### pmdump
 
@@ -58,12 +58,33 @@ Example:
 
 ### Android
 
+Android NDK is required to build it. If Android SDK is installed, NDK-bundle that comes with Android SDK can be also used.
+
+First, modify pmdump_src/Makefile.android file to set the correct NDK path to $NDK variable. After modifying, run the follow command.
+
 ```bash
 cd pmdump_src
 make -f Makefile.android (arm|x86|x86_64)
 ``` 
 
+#### Tip: Use standalone_toolchain
+
+You can build it after making standalone_toolchain
+
+* ref: https://developer.android.com/ndk/guides/standalone_toolchain.html
+
+Following is the example of buidling after making the toolchain for arm architecture with API version 21.
+
+```bash
+cd <NDK>/build/tools
+python make_standalone_toolchain.py --arch arm --api 21 --install-dir /tmp/my-android-toolchain
+# Build
+/tmp/my-android-toolchain/bin/arm-linux-androideabi-gcc –sysroot /tmp/my-android-toolchain/sysroot -fPIE -pie -o pmdump pmdump.c
+```
+
 ### Ubuntu
+
+Build is simple. Just run gcc command or use the following Makefile
 
 ```bash
 cd pmdump_src
@@ -72,7 +93,10 @@ make -f Makefile.host
 
 ## Example usages in Android
 
-adb root previlage requires to run pmdump in Android
+The following example is to show how to install pmdump to Android device and dump process memory.
+
+
+1. adb root previlage requires to run pmdump in Android
 
 ```bash
 adb root
