@@ -58,55 +58,57 @@ Example:
 
 ### Android
 
-  cd pmdump_src
-  make -f Makefile.android (arm|x86|x86_64)
-  
+```bash
+cd pmdump_src
+make -f Makefile.android (arm|x86|x86_64)
+``` 
 
 ### Ubuntu
 
-  cd pmdump_src
-  make -f Makefile.host
+```bash
+cd pmdump_src
+make -f Makefile.host
+```
 
 ## Example usages in Android
 
 adb root previlage requires to run pmdump in Android
 
-  adb root
+```bash
+adb root
+```
 
 Copy pmdump to proper folder. /data folder is a good choice
 
-  adb push pmdump /data/pmdump
+```bash
+adb push pmdump /data/pmdump
+```
 
 Find the processid of the process that you want to dump using DDMS or ps command
 
-  adb shell ps
+```bash
+adb shell ps
+```
 
 Dump memory and copy it to the host
 
-  adb shell
-  $ cd data
-  $ ./pmdump +r +w -x +p <pid> 
-  $ exit
-  adb pull /data/output_pmdump.bin .
+```bash
+adb shell
+$ cd data
+$ ./pmdump +r +w -x +p <pid> 
+$ exit
+adb pull /data/output_pmdump.bin .
+```
 
 Or, dump memory and get it thoughout the network
 
-  # in remote PC
-  nc -lvvv 1212 > dumpfile.bin
-  
-  # in PC connected with Android
-  adb shell
-  $ cd data
-  $ ./pmdump +r +w -x +p <pid> 192.168.1.154 1212
-  $ exit
-  
-  
-  
+```bash
+# in remote PC
+nc -lvvv 1212 > dumpfile.bin
 
-  
-
-Copy pmdump file to the 
-
-
-  
-
+# in PC connected with Android
+adb shell
+$ cd data
+$ ./pmdump +r +w -x +p <pid> 192.168.1.154 1212
+$ exit
+```
