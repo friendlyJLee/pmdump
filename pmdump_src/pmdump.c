@@ -204,6 +204,8 @@ void dump_memory_entry(FILE* srcFile, memorymap_entry *entry, int serverSocket, 
             };
 		}
 	}
+	/* in case, cleansing for preventing side-effect in next dumping experiment */
+	memset(page, 0, pageLength);
 }
 
 
